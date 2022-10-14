@@ -1,0 +1,14 @@
+image: klakegg/hugo:0.101.0-ext-ubuntu
+tasks:
+  - name: Install Dependencies
+    init: npm install && sudo apt install git-restore-mtime && git restore-mtime --force
+    command: hugo server -D -F --baseUrl $(gp url 1313) --liveReloadPort=443 --appendPort=false --bind=0.0.0.0
+ports:
+  - port: 1313
+    onOpen: open-browser
+vscode:
+  extensions:
+    - bungcip.better-toml
+    - budparr.language-hugo-vscode
+    - eliostruyf.vscode-front-matter
+    - valentjn.vscode-ltex
